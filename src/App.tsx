@@ -1,24 +1,19 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Register from "./pages/registerPage/register.component";
 import Login from "./pages/loginPage/login.component";
 import CreateBlog from "./pages/createBlogPage/createBlog.component";
 import Home from "./pages/homePage/home.component";
 import Blog from "./pages/blogPage/blog.component";
-// import Navbar from "./components/Navbar";
-// import Footer from "./components/Footer";
+import Navbar from "./components/navbar/navbar.component";
+import Footer from "./components/footer/footer.component";
 import "./App.css";
 
 const Layout = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
