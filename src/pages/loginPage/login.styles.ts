@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LightGreen } from "../../constants";
 
 export const AuthDiv = styled.div`
   display: flex;
@@ -6,7 +7,7 @@ export const AuthDiv = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #b9e7e7;
+  background-color: ${LightGreen};
 
   form {
     display: flex;

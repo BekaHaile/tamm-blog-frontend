@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LightGreen } from "../../constants";
 
 export const NavbarDiv = styled.div`
   padding: 10px 0px;
@@ -29,7 +30,7 @@ export const LinksContainer = styled.div`
 `;
 
 export const Write = styled.span`
-  background-color: #b9e7e7;
+  background-color: ${LightGreen};
   width: 50px;
   height: 50px;
   border-radius: 50%;
