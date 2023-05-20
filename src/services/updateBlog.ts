@@ -5,6 +5,7 @@ import { Blog } from "../models/blog";
 export const updateBlog = async (data: Blog): Promise<Blog> => {
   const response = await http.put(`${API_URL}/blogs`, data, {
     headers: { Accept: "application/json" },
+    withCredentials: true,
   });
 
   return response.data;

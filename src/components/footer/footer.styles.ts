@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import { LightGreen } from "../../constants";
 
 export const FooterDiv = styled.footer`
-  margin-top: 100px;
   padding: 20px;
   background-color: ${LightGreen};
   display: flex;

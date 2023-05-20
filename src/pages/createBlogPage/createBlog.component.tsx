@@ -18,9 +18,10 @@ import { createNewBlog } from "../../services/createNewBlog";
 
 const CreateBlog = () => {
   const state = useLocation().state;
-  const [value, setValue] = useState(state?.title || "");
-  const [title, setTitle] = useState(state?.desc || "");
+  const [value, setValue] = useState(state?.content || "");
+  const [title, setTitle] = useState(state?.title || "");
   const [file, setFile] = useState<File | undefined>(undefined);
+  const [image, setImage] = useState(state?.img || "");
 
   const navigate = useNavigate();
 
@@ -37,7 +38,9 @@ const CreateBlog = () => {
 
   const handleClick = async (e: any) => {
     e.preventDefault();
-    const imgUrl = await upload();
+    const imgUrl = file ? await upload() : "";
+
+    setImage(imgUrl);
 
     try {
       state
@@ -50,7 +53,6 @@ const CreateBlog = () => {
             title,
             content: value,
             img: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
       navigate("/");
     } catch (err) {
@@ -65,6 +67,7 @@ const CreateBlog = () => {
           type="text"
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
+          value={title}
         />
         <EditorContainer>
           <Editor
@@ -84,6 +87,7 @@ const CreateBlog = () => {
           <span>
             <b>Visibility: </b> Public
           </span>
+          {image && <img src={image} width={200} height={100} alt="Blog" />}
           <input
             style={{ display: "none" }}
             type="file"

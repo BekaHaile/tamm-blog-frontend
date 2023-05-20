@@ -4,6 +4,7 @@ import { Blog } from "../models/blog";
 
 export const deleteBlog = async (id: string): Promise<Blog> => {
   const response = await http.delete(`${API_URL}/blogs/${id}`, {
+    withCredentials: true,
     headers: { Accept: "application/json" },
   });
 

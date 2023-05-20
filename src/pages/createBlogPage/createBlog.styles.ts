@@ -21,7 +21,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const EditorContainer = styled.div`
-  height: 300px;
+  height: 350px;
   overflow: scroll;
   border: 1px solid lightgray;
 `;
@@ -37,6 +37,7 @@ export const Menu = styled.div`
   flex-direction: column;
   gap: 20px;
 `;
+
 export const Item = styled.div`
   border: 1px solid lightgray;
   padding: 10px;
@@ -46,6 +47,7 @@ export const Item = styled.div`
   justify-content: space-between;
   font-size: 12px;
   color: #555;
+  max-height: 400px;
 
   h1 {
     font-size: 20px;

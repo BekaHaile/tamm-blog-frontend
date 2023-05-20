@@ -4,6 +4,7 @@ import { getBlogs } from "../../services/getBlogs";
 import { Blog } from "../../models/blog";
 import { Content, Img, Post, PostContainer } from "./home.styles";
 import { ImgPlaceholder } from "../../constants";
+import DOMPurify from "dompurify";
 
 const PlaceholderPosts: Blog[] = [
   {
@@ -75,11 +76,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-  const getText = (html: string) => {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent;
-  };
-
   const openDetail = (id: string) => {
     navigate(`blog/${id}`);
   };
@@ -93,7 +89,17 @@ const Home = () => {
             <Link className="link" to={`/blog/${blog.id}`}>
               <h1>{blog.title}</h1>
             </Link>
-            <p>{blog.content}</p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  blog.content
+                    ? blog.content.length > 100
+                      ? blog.content.substring(0, 100) + "..."
+                      : blog.content
+                    : ""
+                ),
+              }}
+            ></p>
             <button onClick={() => (blog.id ? openDetail(blog.id) : null)}>
               Read More
             </button>

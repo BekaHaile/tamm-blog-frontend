@@ -10,7 +10,7 @@ export const NavbarDiv = styled.div`
 
 export const LogoDiv = styled.div`
   img {
-    width: 120px;
+    width: 90px;
   }
 `;
 

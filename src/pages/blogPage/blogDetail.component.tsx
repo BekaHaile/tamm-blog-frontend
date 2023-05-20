@@ -49,6 +49,7 @@ const BlogDetail = () => {
   }, [blogId]);
 
   const handleDelete = async () => {
+    console.log("deleting");
     try {
       await deleteBlog(blogId);
       navigate("/");
@@ -69,7 +70,7 @@ const BlogDetail = () => {
           </div>
           {currentUser?.username === blog?.author && (
             <EditContainer>
-              <Link to={`/write?edit=2`} state={blog}>
+              <Link to={`/create?edit=${blog.id}`} state={blog}>
                 <img src={Edit} alt="" />
               </Link>
               <img onClick={handleDelete} src={Delete} alt="" />

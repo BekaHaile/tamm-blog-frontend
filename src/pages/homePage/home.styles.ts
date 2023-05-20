@@ -2,11 +2,11 @@ import { styled } from "styled-components";
 import { LightGreen } from "../../constants";
 
 export const PostContainer = styled.div`
-  margin-top: 50px;
+  padding: 50px 0;
   display: flex;
   flex-direction: column;
   gap: 150px;
-  width: 85%;
+  width: 90%;
   margin-inline: auto;
 `;
 
