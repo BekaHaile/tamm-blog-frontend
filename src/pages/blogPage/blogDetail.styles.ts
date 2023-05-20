@@ -11,7 +11,7 @@ export const Content = styled.div`
   flex: 5;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 
   img {
     width: 100%;

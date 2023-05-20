@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { LightGreen } from "../../constants";
 
 export const NavbarDiv = styled.div`
-  padding: 10px 0px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
