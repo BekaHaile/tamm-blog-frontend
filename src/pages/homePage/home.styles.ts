@@ -6,6 +6,8 @@ export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 150px;
+  width: 85%;
+  margin-inline: auto;
 `;
 
 export const Post = styled.div`

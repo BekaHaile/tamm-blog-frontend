@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 export const DetailContainer = styled.div`
   display: flex;
   gap: 50px;
+  width: 85%;
+  margin-inline: auto;
 `;
 
 export const Content = styled.div`
