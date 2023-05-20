@@ -30,7 +30,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }, []);
 
   const login = async (inputs: any) => {
-    setCurrentUser(await loginUser(inputs));
+    const response = await loginUser(inputs);
+    setCurrentUser(response);
   };
 
   const logout = async () => {

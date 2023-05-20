@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AuthDiv } from "../loginPage/login.styles";
+import { signupUser } from "../../services/createUser";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -20,10 +20,10 @@ const Register = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", inputs);
+      await signupUser(inputs);
       navigate("/login");
     } catch (err: any) {
-      setError(err.response.data);
+      setError(err.response?.data?.message);
     }
   };
 

@@ -67,7 +67,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const res = await getBlogs();
-        setBlogs(res);
+        if (res.length > 0) setBlogs(res);
       } catch (err) {
         console.log(err);
       }

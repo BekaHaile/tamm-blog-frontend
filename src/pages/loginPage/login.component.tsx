@@ -5,26 +5,27 @@ import { AuthDiv } from "./login.styles";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [err, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
-  const authContext = useContext(AuthContext);
+  const { login, currentUser } = useContext(AuthContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log("Calling submit");
     e.preventDefault();
     try {
-      await authContext?.login(inputs);
+      await login(inputs);
       navigate("/");
     } catch (err: any) {
-      setError(err.response.data);
+      setError(err.response?.data?.message);
     }
   };
 
@@ -35,9 +36,9 @@ const Login = () => {
         <input
           required
           type="text"
-          placeholder="username"
-          name="username"
-          value={inputs.username}
+          placeholder="email"
+          name="email"
+          value={inputs.email}
           onChange={handleChange}
         />
         <input
