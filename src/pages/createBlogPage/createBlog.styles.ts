@@ -70,11 +70,13 @@ export const Buttons = styled.div`
     border: 1px solid teal;
     padding: 3px 5px;
   }
-  :last-child {
-    cursor: pointer;
-    color: white;
-    background-color: teal;
-    border: 1px solid teal;
-    padding: 3px 5px;
-  }
+`;
+
+export const PublishButton = styled.button`
+  cursor: pointer;
+  color: white;
+  background-color: teal;
+  border: 1px solid teal;
+  padding: 3px 5px;
+  opacity: ${({ disabled }) => (disabled ? "0.3" : "1")};
 `;

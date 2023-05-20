@@ -23,11 +23,9 @@ const Navbar = () => {
             Login
           </Link>
         )}
-        <Write>
-          <Link className="link" to="/create">
-            Write
-          </Link>
-        </Write>
+        <Link className="link" to="/create">
+          <Write>Write</Write>
+        </Link>
       </LinksContainer>
     </NavbarDiv>
   );

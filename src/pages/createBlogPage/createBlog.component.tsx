@@ -13,6 +13,7 @@ import {
   File,
   Item,
   Menu,
+  PublishButton,
 } from "./createBlog.styles";
 import { createNewBlog } from "../../services/createNewBlog";
 
@@ -44,11 +45,14 @@ const CreateBlog = () => {
 
     try {
       state
-        ? await updateBlog({
-            title,
-            content: value,
-            img: file && imgUrl ? imgUrl : "",
-          })
+        ? await updateBlog(
+            {
+              title,
+              content: value,
+              img: file && imgUrl ? imgUrl : "",
+            },
+            state.id
+          )
         : await createNewBlog({
             title,
             content: value,
@@ -100,7 +104,9 @@ const CreateBlog = () => {
           <File htmlFor="file">Upload Image</File>
           <Buttons>
             <button>Save as a draft</button>
-            <button onClick={handleClick}>Publish</button>
+            <PublishButton onClick={handleClick} disabled={!title || !value}>
+              {state ? "Update" : "Publish"}
+            </PublishButton>
           </Buttons>
         </Item>
       </Menu>

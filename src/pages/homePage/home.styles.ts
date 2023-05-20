@@ -32,11 +32,12 @@ export const Img = styled.div`
     top: 20px;
     left: -20px;
     z-index: -1;
+    max-height: 300px;
   }
 
   img {
     width: 100%;
-    max-height: 400px;
+    max-height: 300px;
     object-fit: cover;
   }
 `;
