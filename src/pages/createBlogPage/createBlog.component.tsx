@@ -1,7 +1,5 @@
 import { useState } from "react";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { uploadFile } from "../../services/upload";
@@ -16,13 +14,13 @@ import {
   Item,
   Menu,
 } from "./createBlog.styles";
+import { createNewBlog } from "../../services/createNewBlog";
 
 const CreateBlog = () => {
   const state = useLocation().state;
   const [value, setValue] = useState(state?.title || "");
   const [title, setTitle] = useState(state?.desc || "");
   const [file, setFile] = useState<File | undefined>(undefined);
-  const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate();
 
@@ -48,10 +46,9 @@ const CreateBlog = () => {
             content: value,
             img: file && imgUrl ? imgUrl : "",
           })
-        : await axios.post(`/posts/`, {
+        : await createNewBlog({
             title,
             content: value,
-            cat,
             img: file ? imgUrl : "",
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });

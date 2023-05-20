@@ -5,11 +5,8 @@ import { Blog } from "../models/blog";
 interface CreateRequest {
   title: string;
   content: string;
-  author: string;
-  img: string;
-  desc: string;
+  img?: string;
   date: string;
-  userImg: string;
 }
 
 export const createNewBlog = async (data: CreateRequest): Promise<Blog> => {
