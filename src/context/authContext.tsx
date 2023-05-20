@@ -1,11 +1,7 @@
-import axios from "axios";
 import { createContext, useEffect, useState, ReactNode } from "react";
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-}
+import { User } from "../models/user";
+import { loginUser } from "../services/login";
+import { logoutUser } from "../services/logout";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -13,9 +9,11 @@ interface AuthContextType {
   logout: () => Promise<void>;
 }
 
-export const AuthContext = createContext<AuthContextType | undefined>(
-  undefined
-);
+export const AuthContext = createContext<AuthContextType>({
+  currentUser: { id: undefined, username: "", email: "" },
+  login: async (inputs) => {},
+  logout: async () => {},
+});
 
 interface AuthContextProviderProps {
   children: ReactNode;
@@ -32,12 +30,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }, []);
 
   const login = async (inputs: any) => {
-    const res = await axios.post("/auth/login", inputs);
-    setCurrentUser(res.data);
+    setCurrentUser(await loginUser(inputs));
   };
 
   const logout = async () => {
-    await axios.post("/auth/logout");
+    await logoutUser();
     setCurrentUser(null);
   };
 
