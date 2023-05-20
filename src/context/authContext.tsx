@@ -10,7 +10,7 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  currentUser: { id: undefined, username: "", email: "" },
+  currentUser: null,
   login: async (inputs) => {},
   logout: async () => {},
 });

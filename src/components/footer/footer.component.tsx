@@ -1,9 +1,15 @@
-import React from 'react'
+import Logo from "../../assets/logo.png";
+import { FooterDiv } from "./footer.styles";
 
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <FooterDiv>
+      <img src={Logo} alt="" />
+      <span>
+        Made by <b>Beka Haile</b> using React.
+      </span>
+    </FooterDiv>
+  );
+};
 
-export default Footer
+export default Footer;
