@@ -3,10 +3,10 @@ import Register from "./pages/registerPage/register.component";
 import Login from "./pages/loginPage/login.component";
 import CreateBlog from "./pages/createBlogPage/createBlog.component";
 import Home from "./pages/homePage/home.component";
-import Blog from "./pages/blogPage/blog.component";
 import Navbar from "./components/navbar/navbar.component";
 import Footer from "./components/footer/footer.component";
 import "./App.css";
+import BlogDetail from "./pages/blogPage/blogDetail.component";
 
 const Layout = () => {
   return (
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/blog/:id",
-        element: <Blog />,
+        element: <BlogDetail />,
       },
       {
         path: "/create",
