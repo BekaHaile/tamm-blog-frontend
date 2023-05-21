@@ -87,9 +87,6 @@ const CreateBlog = () => {
         <Item>
           <h1>Publish</h1>
           <span>
-            <b>Status: </b> Draft
-          </span>
-          <span>
             <b>Visibility: </b> Public
           </span>
           {image && (
@@ -114,7 +111,6 @@ const CreateBlog = () => {
           />
           <File htmlFor="file">Upload Image</File>
           <Buttons>
-            <button>Save as a draft</button>
             <PublishButton onClick={handleClick} disabled={!title || !value}>
               {state ? "Update" : "Publish"}
             </PublishButton>

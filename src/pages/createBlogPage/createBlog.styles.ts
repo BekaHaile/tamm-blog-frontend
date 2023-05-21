@@ -61,15 +61,7 @@ export const File = styled.label`
 
 export const Buttons = styled.div`
   display: flex;
-  justify-content: space-between;
-
-  :first-child {
-    cursor: pointer;
-    color: teal;
-    background-color: white;
-    border: 1px solid teal;
-    padding: 3px 5px;
-  }
+  justify-content: end;
 `;
 
 export const PublishButton = styled.button`
