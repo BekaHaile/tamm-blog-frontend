@@ -9,6 +9,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
 }
 
+// Create the authentication context
 export const AuthContext = createContext<AuthContextType>({
   currentUser: null,
   login: async (inputs) => {},
@@ -23,27 +24,35 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      const user = localStorage.getItem("user");
-      if (user) setCurrentUser(JSON.parse(user));
+    // Check if the user data exists in localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setCurrentUser(user);
     }
   }, []);
 
   const login = async (inputs: any) => {
+    // Call the login service to authenticate the user
     const response = await loginUser(inputs);
     setCurrentUser(response);
   };
 
   const logout = async () => {
+    // Call the logout service to clear the user session
     await logoutUser();
     setCurrentUser(null);
   };
 
   useEffect(() => {
+    // Update the localStorage whenever the currentUser changes
+    if (!currentUser) return;
+
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
   return (
+    // Provide the authentication context value to the children components
     <AuthContext.Provider value={{ currentUser, login, logout }}>
       {children}
     </AuthContext.Provider>
