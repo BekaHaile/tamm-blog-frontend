@@ -14,7 +14,7 @@ import {
   User,
 } from "./blogDetail.styles";
 import moment from "moment";
-import { ImgPlaceholder, UserImgPlaceholder } from "../../constants";
+import { API_URL, ImgPlaceholder, UserImgPlaceholder } from "../../constants";
 
 const BlogDetail = () => {
   const [blog, setBlog] = useState<Blog>({
@@ -61,7 +61,17 @@ const BlogDetail = () => {
   return (
     <DetailContainer>
       <Content>
-        <img src={blog.img ? blog.img : ImgPlaceholder} alt="" />
+        <img
+          src={
+            blog.img
+              ? blog.img.includes("http")
+                ? blog.img
+                : API_URL + "/uploads/" + blog.img
+              : ImgPlaceholder
+          }
+          alt="Blog"
+          style={{ objectFit: "cover" }}
+        />
         <User>
           <img src={blog.userImg ? blog?.userImg : UserImgPlaceholder} alt="" />
           <div className="info">

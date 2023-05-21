@@ -16,6 +16,7 @@ import {
   PublishButton,
 } from "./createBlog.styles";
 import { createNewBlog } from "../../services/createNewBlog";
+import { API_URL } from "../../constants";
 
 const CreateBlog = () => {
   const state = useLocation().state;
@@ -91,7 +92,17 @@ const CreateBlog = () => {
           <span>
             <b>Visibility: </b> Public
           </span>
-          {image && <img src={image} width={200} height={100} alt="Blog" />}
+          {image && (
+            <img
+              src={
+                image.includes("http") ? image : API_URL + "/uploads/" + image
+              }
+              width={200}
+              height={100}
+              alt="Blog"
+              style={{ objectFit: "cover" }}
+            />
+          )}
           <input
             style={{ display: "none" }}
             type="file"

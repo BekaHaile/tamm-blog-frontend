@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getBlogs } from "../../services/getBlogs";
 import { Blog } from "../../models/blog";
 import { Content, Img, Post, PostContainer } from "./home.styles";
-import { ImgPlaceholder } from "../../constants";
+import { API_URL, ImgPlaceholder } from "../../constants";
 import DOMPurify from "dompurify";
 
 const PlaceholderPosts: Blog[] = [
@@ -84,7 +84,20 @@ const Home = () => {
     <PostContainer>
       {blogs.map((blog) => (
         <Post key={blog.id}>
-          <Img>{<img src={blog.img ? blog.img : ImgPlaceholder} alt="" />}</Img>
+          <Img>
+            {
+              <img
+                src={
+                  blog.img
+                    ? blog.img.includes("http")
+                      ? blog.img
+                      : API_URL + "/uploads/" + blog.img
+                    : ImgPlaceholder
+                }
+                alt=""
+              />
+            }
+          </Img>
           <Content>
             <Link className="link" to={`/blog/${blog.id}`}>
               <h1>{blog.title}</h1>

@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:3000/api/v1";
+export const API_URL = "http://localhost:3000/api";
 
 export const LightGreen = "#B9E9FC";
 export const ImgPlaceholder =
