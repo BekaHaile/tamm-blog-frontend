@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import moment from "moment";
 import { uploadFile } from "../../services/upload";
 import { updateBlog } from "../../services/updateBlog";
 import {
@@ -17,6 +16,8 @@ import {
 } from "./createBlog.styles";
 import { createNewBlog } from "../../services/createNewBlog";
 import { API_URL } from "../../constants";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateBlog = () => {
   const state = useLocation().state;
@@ -34,12 +35,15 @@ const CreateBlog = () => {
       const res = await uploadFile(formData);
       return res;
     } catch (err) {
+      toast.error("Error uploading Image");
+
       console.log(err);
     }
   };
 
   const handleClick = async (e: any) => {
     e.preventDefault();
+
     const imgUrl = file ? await upload() : "";
 
     setImage(imgUrl);
@@ -59,8 +63,11 @@ const CreateBlog = () => {
             content: value,
             img: file ? imgUrl : "",
           });
+      toast.success("Blog created successfully");
       navigate("/");
     } catch (err) {
+      toast.error("Error creating blog");
+
       console.log(err);
     }
   };

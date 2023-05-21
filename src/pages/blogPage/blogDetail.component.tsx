@@ -15,6 +15,7 @@ import {
 } from "./blogDetail.styles";
 import moment from "moment";
 import { API_URL, ImgPlaceholder, UserImgPlaceholder } from "../../constants";
+import { toast } from "react-toastify";
 
 const BlogDetail = () => {
   const [blog, setBlog] = useState<Blog>({
@@ -42,6 +43,8 @@ const BlogDetail = () => {
         const res = await getBlog(blogId);
         setBlog(res);
       } catch (err) {
+        toast.error("Error Fetching Blog");
+
         console.log(err);
       }
     };
@@ -52,8 +55,12 @@ const BlogDetail = () => {
     console.log("deleting");
     try {
       await deleteBlog(blogId);
+      toast.success("Blog Deleted Successfully");
+
       navigate("/");
     } catch (err) {
+      toast.error("Error Deleting blog");
+
       console.log(err);
     }
   };

@@ -5,6 +5,7 @@ import { Blog } from "../../models/blog";
 import { Content, Img, Post, PostContainer } from "./home.styles";
 import { API_URL, ImgPlaceholder } from "../../constants";
 import DOMPurify from "dompurify";
+import { toast } from "react-toastify";
 
 const PlaceholderPosts: Blog[] = [
   {
@@ -70,6 +71,8 @@ const Home = () => {
         const res = await getBlogs();
         if (res.length > 0) setBlogs(res);
       } catch (err) {
+        toast.error("Error fetching blogs");
+
         console.log(err);
       }
     };
