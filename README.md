@@ -17,9 +17,9 @@ To start the app locally, follow these steps:
 2. Navigate to the project directory: 
      cd tamm-blog-frontend
 3. Install the dependencies:
-    ### `npm install` or ### `yarn install`
+    ### `npm install` or `yarn install`
 4. Run the app in development mode:
-    ### `npm start` or ### `yarn start`
+    ### `npm start` or `yarn start`
 This will open the app in your browser at [http://localhost:3001](http://localhost:3001).
 
 # Building for Production
