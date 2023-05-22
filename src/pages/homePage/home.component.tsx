@@ -62,55 +62,54 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
 
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const openDetail = (id: string) => {
     navigate(`blog/${id}`);
   };
 
   return (
     <PostContainer>
-      {blogs.map((blog, index) => (
-        <Post
-          key={blog.id}
-          ref={index + 1 === blogs.length ? lastTrackRef : null}
-        >
-          <Img>
-            <img
-              src={
-                blog.img
-                  ? blog.img.includes("http")
-                    ? blog.img
-                    : API_URL + "/uploads/" + blog.img
-                  : ImgPlaceholder
-              }
-              alt=""
-            />
-          </Img>
-          <Content>
-            <Link className="link" to={`/blog/${blog.id}`}>
-              <h1>{blog.title}</h1>
-            </Link>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  blog.content
-                    ? blog.content.length > 100
-                      ? blog.content.substring(0, 100) + "..."
-                      : blog.content
-                    : ""
-                ),
-              }}
-            ></p>
-            <button onClick={() => (blog.id ? openDetail(blog.id) : null)}>
-              Read More
-            </button>
-          </Content>
-        </Post>
-      ))}
+      {blogs && blogs.length > 0 ? (
+        blogs.map((blog, index) => (
+          <Post
+            key={blog.id}
+            ref={index + 1 === blogs.length ? lastTrackRef : null}
+          >
+            <Img>
+              <img
+                src={
+                  blog.img
+                    ? blog.img.includes("http")
+                      ? blog.img
+                      : API_URL + "/uploads/" + blog.img
+                    : ImgPlaceholder
+                }
+                alt=""
+              />
+            </Img>
+            <Content>
+              <Link className="link" to={`/blog/${blog.id}`}>
+                <h1>{blog.title}</h1>
+              </Link>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(
+                    blog.content
+                      ? blog.content.length > 100
+                        ? blog.content.substring(0, 100) + "..."
+                        : blog.content
+                      : ""
+                  ),
+                }}
+              ></p>
+              <button onClick={() => (blog.id ? openDetail(blog.id) : null)}>
+                Read More
+              </button>
+            </Content>
+          </Post>
+        ))
+      ) : (
+        <h1 style={{ marginInline: "auto" }}>No Blogs Found</h1>
+      )}
     </PostContainer>
   );
 };
